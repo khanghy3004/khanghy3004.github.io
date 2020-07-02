@@ -1,0 +1,195 @@
+<html>
+    <head>
+        <title>Vòng xoay định mệnh</title>
+        <link rel="stylesheet" href="main.css" type="text/css" />
+        <script type="text/javascript" src="./Winwheel.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+    </head>
+    <body>
+        <div align="center">
+		<br /><br />
+			<div class="row">
+			<div class="column left">
+				<img src="./logo-fpt.png" width=200px height=71px/>
+			</div>
+			<div class="column middle">
+				<h1>&nbsp;&nbsp;&nbsp;BINGO !!!</h1>
+			</div>
+			<div class="column right">
+				<img src="./logo.png"/>
+			</div>
+			</div>
+			&nbsp;&nbsp;&nbsp;<img id="spin_button" src="spin_on.png" alt="Spin" onClick="startSpin();" />
+			<br /><br />
+			&nbsp;&nbsp;&nbsp;<a href="#" onClick="resetWheel(); return false;">Play Again</a><br />
+            <table cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td>
+                        <div class="power_controls">
+                            <table class="power" cellpadding="10" cellspacing="0">
+                                <tr>
+                                    <th align="center" id="w1">Chuyên Lý Tự Trọng</th>
+                                </tr><tr>
+                                    <th align="center" id="w2">Thực hành sư phạm</th>
+                                </tr><tr>
+                                    <th align="center" id="w3">Châu Văn Liêm</th>
+                                </tr><tr>
+                                    <th align="center" id="w4">Nguyễn Việt Hồng</th>
+                                </tr><tr>
+                                    <th align="center" id="w5">Phan Ngọc Hiển</th>
+                                </tr><tr>
+                                    <th align="center" id="w6">Nguyễn Bỉnh Khiêm</th>
+                                </tr><tr>
+                                    <th align="center" id="w7">Trần Đại Nghĩa</th>
+                                </tr><tr>
+                                    <th align="center" id="w8">An Khánh</th>
+                                </tr>
+                            </table>                            
+                        </div>
+                    </td>
+                    <td width="438" height="582" class="the_wheel" align="center" valign="center">
+                        <canvas id="canvas" width="434" height="434">
+                            <p style="{color: white}" align="center">Sorry, your browser doesn't support canvas. Please try another.</p>
+                        </canvas>
+                    </td>
+					
+					<td>
+                        <div class="power_controls">
+                            <table class="power" cellpadding="10" cellspacing="0">
+                                <tr>
+                                    <th align="center" id="w9">Bùi Hữu Nghĩa</th>
+                                </tr><tr>
+                                    <th align="center" id="w10">FSchool</th>
+                                </tr><tr>
+                                    <th align="center" id="w11">Thái Bình Dương</th>
+                                </tr><tr>
+                                    <th align="center" id="w12">Việt Mỹ</th>
+                                </tr><tr>
+                                    <th align="center" id="w13">Quốc Văn</th>
+                                </tr><tr>
+                                    <th align="center" id="w14">Bình Thủy</th>
+                                </tr><tr>
+                                    <th align="center" id="w15">Nguyễn Việt Dũng</th>
+                                </tr><tr>
+                                    <th align="center" id="w16">Trường đời</th>
+                                </tr>
+                            </table>
+                            
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <script>
+            // Create new wheel object specifying the parameters at creation time.
+            let theWheel = new Winwheel({
+                'numSegments'  : 16,     // Specify number of segments.
+                'outerRadius'  : 212,   // Set outer radius so wheel fits inside the background.
+                'textFontSize' : 15,    // Set font size as desired.
+                'segments'     :        // Define segments including colour and text.
+                [
+                   {'fillStyle' : '#eae56f', 'text' : 'Chuyên Lý Tự Trọng', 'id': 'w1'},
+                   {'fillStyle' : '#89f26e', 'text' : 'Thực hành sư phạm', 'id': 'w2'},
+                   {'fillStyle' : '#7de6ef', 'text' : 'Châu Văn Liêm', 'id': 'w3'},
+                   {'fillStyle' : '#e7706f', 'text' : 'Nguyễn Việt Hồng', 'id': 'w4'},
+                   {'fillStyle' : '#eae56f', 'text' : 'Phan Ngọc Hiển', 'id': 'w5'},
+                   {'fillStyle' : '#89f26e', 'text' : 'Nguyễn Bỉnh Khiêm', 'id': 'w6'},
+                   {'fillStyle' : '#7de6ef', 'text' : 'Trần Đại Nghĩa', 'id': 'w7'},
+                   {'fillStyle' : '#e7706f', 'text' : 'An Khánh', 'id': 'w8'},
+				   {'fillStyle' : '#eae56f', 'text' : 'Bùi Hữu Nghĩa', 'id': 'w9'},
+                   {'fillStyle' : '#89f26e', 'text' : 'FSchool', 'id': 'w10'},
+                   {'fillStyle' : '#7de6ef', 'text' : 'Thái Bình Dương', 'id': 'w11'},
+                   {'fillStyle' : '#e7706f', 'text' : 'Việt Mỹ', 'id': 'w12'},
+                   {'fillStyle' : '#eae56f', 'text' : 'Quốc Văn', 'id': 'w13'},
+                   {'fillStyle' : '#89f26e', 'text' : 'Bình Thủy', 'id': 'w14'},
+                   {'fillStyle' : '#7de6ef', 'text' : 'Nguyễn Việt Dũng', 'id': 'w15'},
+                   {'fillStyle' : '#e7706f', 'text' : 'Trường đời', 'id': 'w16'}
+                ],
+                'animation' :           // Specify the animation to use.
+                {
+                    'type'     : 'spinToStop',
+                    'duration' : 15,
+                    'spins'    : 8,
+                    'callbackFinished' : alertPrize,
+                    'callbackSound'    : playSound,   // Function to call when the tick sound is to be triggered.
+                    'soundTrigger'     : 'pin'        // Specify pins are to trigger the sound, the other option is 'segment'.
+                },
+                'pins' :
+                {
+                    'number' : 16   // Number of pins. They space evenly around the wheel.
+                }
+            });
+
+            // -----------------------------------------------------------------
+            // This function is called when the segment under the prize pointer changes
+            // we can play a small tick sound here like you would expect on real prizewheels.
+            // -----------------------------------------------------------------
+            let audio = new Audio('tick.mp3');  // Create audio object and load tick.mp3 file.
+
+            function playSound()
+            {
+                // Stop and rewind the sound if it already happens to be playing.
+                audio.pause();
+                audio.currentTime = 0;
+
+                // Play the sound.
+                audio.play();
+            }
+
+            // -------------------------------------------------------
+            // Called when the spin animation has finished by the callback feature of the wheel because I specified callback in the parameters
+            // note the indicated segment is passed in as a parmeter as 99% of the time you will want to know this to inform the user of their prize.
+            // -------------------------------------------------------
+            function alertPrize(indicatedSegment)
+            {
+                // Do basic alert of the segment text.
+                // You would probably want to do something more interesting with this information.
+				console.log(indicatedSegment)
+				document.getElementById(indicatedSegment.id).style.background = "#f26f20";
+				document.getElementById(indicatedSegment.id).style.color = "#fff";
+                // alert("You have won " + indicatedSegment.text);
+            }
+
+            // =======================================================================================================================
+            // Code below for the power controls etc which is entirely optional. You can spin the wheel simply by
+            // calling theWheel.startAnimation();
+            // =======================================================================================================================
+            let wheelSpinning = false;
+
+            // -------------------------------------------------------
+            // Click handler for spin button.
+            // -------------------------------------------------------
+            function startSpin()
+            {
+                // Ensure that spinning can't be clicked again while already running.
+                if (wheelSpinning == false) {
+                    // Based on the power level selected adjust the number of spins for the wheel, the more times is has
+                    // to rotate with the duration of the animation the quicker the wheel spins.
+
+                    // Disable the spin button so can't click again while wheel is spinning.
+                    document.getElementById('spin_button').src       = "spin_off.png";
+                    document.getElementById('spin_button').class = "";
+
+                    // Begin the spin animation by calling startAnimation on the wheel object.
+                    theWheel.startAnimation();
+
+                    // Set to true so that power can't be changed and spin button re-enabled during
+                    // the current animation. The user will have to reset before spinning again.
+                    wheelSpinning = true;
+                }
+            }
+
+            // -------------------------------------------------------
+            // Function for reset button.
+            // -------------------------------------------------------
+            function resetWheel()
+            {
+				document.getElementById('spin_button').src       = "spin_on.png";
+                theWheel.stopAnimation(false);  // Stop the animation, false as param so does not call callback function.
+                theWheel.rotationAngle = 0;     // Re-set the wheel angle to 0 degrees.
+                theWheel.draw();                // Call draw to render changes to the wheel.
+                wheelSpinning = false;          // Reset to false to power buttons and spin can be clicked again.
+            }
+        </script>
+    </body>
+</html>
